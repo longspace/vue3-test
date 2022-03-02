@@ -1,26 +1,35 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div>
+        <!-- <router-view></router-view> -->
+        <div>{{user}}</div>
+        <button @click="hello">hello</button>
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import { reactive } from "vue";
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+    name: "App",
+    setup() {
+        let user = reactive({
+            name: "张三",
+            age: 25,
+        });
+        console.log(user)
+        function hello() {
+            console.log("aaa");
+            // user = { name: "李四", age: 28 };
+            user.name = '李四';
+            user.age = 28;
+        }
+
+        return {
+            user,
+            hello,
+        };
+    },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
